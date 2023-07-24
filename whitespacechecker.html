@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document check</title>
+    <style>
+        #ch{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: aqua;
+        }
+        fieldset{
+            width:400px;
+            padding:30px;
+            border: 3px solid green;
+            background-image: url(l.png);
+            font-weight: bold;
+        }
+        legend{
+            font-size:x-large;
+        }
+        input[type="text"],
+       input[type="password"],
+       input [type="number"] {
+        width: 100%;
+       padding: 10px;
+       margin-bottom: 10px;
+    }
+    #k{
+        background:greenyellow;
+        padding: 2px;
+        border:3px solid red;
+        cursor: pointer;
+        width: 100px;
+        color:blue;
+        font-size: large;
+    }
+    .show-password{
+        margin-top: 10px;
+        display: inline-block;
+        cursor: pointer;
+
+    }
+    #er{
+        color:aquamarine;
+    }
+    #c{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border-radius: 50%;
+        color:white;
+        background-color: black;
+        height: 50px;
+    }
+    #sh{
+        color:red;
+        font-size: large;
+        font-style: italic;
+    }
+    #yk{
+        color:red;
+        font-size: large;
+        font-style: italic;
+    }
+    </style>
+</head>
+<body id="ch">
+    
+    <form action="#" method="post" onsubmit="return validate()">
+        <fieldset>
+            <p id="sh"></p>
+            <legend>Addmission Form</legend>
+            <label for="Name">Name </label>
+            <input type="text" name="name" onkeyup="white(this.value)">
+            <p id="yk"></p>
+            <script>
+                // ... (your existing code) ...
+        
+                // Move the 'white()' function definition above the input field
+                var patten = /\s/g;
+                var m = document.getElementById("yk");
+                function white(data) {
+                    var isSpace = patten.test(data);
+                    if (isSpace) {
+                        m.innerText = "Please remove the spaces";
+                    } else {
+                        m.innerText = "";
+                    }
+                }
+            </script>
+
+            <label for="Age">Age</label>
+            <input type="number" name="age"><br/><br/>
+
+            <label for="Gender">Gender</label>
+            <label for="Male">Male</label>
+            <input type="radio" name="gen">
+            <label for="Female">Female</label>
+            <input type="radio" name="gen"><br/><br/>
+
+            <label for="Password">Password</label>
+            <input type="password" id="pass" name="password"onkeyup="white(this.value)">
+            <label for="confirm">confirm</label>
+            <input type="password" id="cp" name="confirm" onkeyup="check(this)"require >
+            <error id="er"></error><br/>
+            <button type="submit" id="k">Login</button>
+            
+            <label class="show-password">
+                <input type="checkbox" onclick="toggle()">Show password
+            </label>
+            
+
+        </fieldset>
+    </form>
+    <button onclick="chg()" id="c">Theme</button>
+    <script>
+        window.addEventListener('keyup',event=>{
+            var s=event.getModifierState("CapsLock");
+            if(s)
+            document.getElementById("sh").innerText="Warning:CapsLock is on";
+            else
+            document.getElementById("sh").innerText="";
+
+        })
+        function toggle(){
+        const p=document.getElementById('pass');
+        if(p.type==="password")
+        {
+        p.type="text";
+        }
+        else{
+            p.type="password";
+        }
+    }
+      var flag=1;
+    function check(elem)
+    {
+       if(elem.value.length>0)
+       {
+        if(elem.value!=pass.value)
+        {
+            document.getElementById("er").innerText="Password does not match";
+            flag=0;
+        }
+        else
+        {
+            document.getElementById("er").innerText="";
+            flag=1;
+        }
+       }
+       else{
+        document.getElementById("er").innerText="";
+        flag=0;
+       }
+
+    }
+    function validate()
+    {
+        if(flag==1)
+        return true;
+        else
+        return false;
+    }
+    function chg() {
+            const body = document.getElementById("ch");
+            if (body.style.backgroundColor === "aquamarine" || body.style.backgroundColor === "") {
+                body.style.backgroundColor = "aqua";
+            } else {
+                body.style.backgroundColor = "aquamarine";
+            }
+        }
+
+    </script>
+</body>
+</html>
